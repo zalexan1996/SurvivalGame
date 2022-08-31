@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Z.Engine", "Z.Engine\Z.Engine.csproj", "{12519D41-0DFC-4F89-8AFA-AE9FF82E5897}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Z.SurvivalGame", "Z.Game\Z.SurvivalGame.csproj", "{8ABB4516-EDDE-42E2-856A-1983E9FA8EB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12519D41-0DFC-4F89-8AFA-AE9FF82E5897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12519D41-0DFC-4F89-8AFA-AE9FF82E5897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12519D41-0DFC-4F89-8AFA-AE9FF82E5897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12519D41-0DFC-4F89-8AFA-AE9FF82E5897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ABB4516-EDDE-42E2-856A-1983E9FA8EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ABB4516-EDDE-42E2-856A-1983E9FA8EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ABB4516-EDDE-42E2-856A-1983E9FA8EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ABB4516-EDDE-42E2-856A-1983E9FA8EB2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F993912-FE6D-4261-A815-12E95F7E3AE1}
+	EndGlobalSection
+EndGlobal
