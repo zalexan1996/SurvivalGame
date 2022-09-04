@@ -71,6 +71,8 @@ namespace Z.Engine.Source._2D.Sprites
         }
 
 
+        public string Name { get; set; }
+
         /// <summary>
         /// Whether we are actively playing the animation.
         /// </summary>

@@ -29,11 +29,16 @@ namespace Z.Engine.Source._2D.Animation
         }
 
 
-        public void AddAnimation(string animationName, AnimatedSprite animatedSprite)
+        public void AddAnimation(AnimatedSprite animatedSprite)
         {
-            _animationProperties.Add(animationName, animatedSprite);
+            _animationProperties.Add(animatedSprite.Name, animatedSprite);
         }
 
+        public AnimatedSprite? GetAnimation(string animationName)
+        {
+            _animationProperties.TryGetValue(animationName, out AnimatedSprite? animatedSprite);
+            return animatedSprite;
+        }
         public void Play(string animationName)
         {
             AnimatedSprite? animation = null;
