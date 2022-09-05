@@ -8,6 +8,9 @@ using Z.Engine.Source.Interfaces;
 
 namespace Z.Engine.Source.World
 {
+    /// <summary>
+    /// A drawable object that has a location.
+    /// </summary>
     public class WorldObject : DrawableGameComponent, IPosition
     {
         public WorldObject(Game game, IPosition? parent) : base(game)
@@ -15,16 +18,18 @@ namespace Z.Engine.Source.World
             Parent = parent;
         }
 
-        /// <summary>
-        /// The world position of this object. Calculated by accumulating locations through the parent chain.
-        /// </summary>
+
         public Vector2 WorldPosition
         {
             get
             {
-                return RelativePosition + (Parent?.RelativePosition ?? Vector2.Zero);
+                return RelativePosition + (Parent?.WorldPosition ?? Vector2.Zero);
             }
         }
+
+        /// <summary>
+        /// The world position of this object. Calculated by accumulating locations through the parent chain.
+        /// </summary>
         public Vector2 RelativePosition
         {
             get

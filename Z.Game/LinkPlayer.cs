@@ -29,46 +29,47 @@ namespace Z.SurvivalGame
         {
             LoadAnimations();
 
-
+            // Creates the walk blend space.
             BlendSpace<AnimatedSprite> WalkBlendSpace = new();
             WalkBlendSpace.Add(-1, 0, AnimationStateMachine.GetAnimation("WalkLeft")!);
             WalkBlendSpace.Add(1, 0, AnimationStateMachine.GetAnimation("WalkRight")!);
             WalkBlendSpace.Add(0, -1, AnimationStateMachine.GetAnimation("WalkUp")!);
             WalkBlendSpace.Add(0, 1, AnimationStateMachine.GetAnimation("WalkDown")!);
 
+            // Creates the idle blend space.
             BlendSpace<AnimatedSprite> IdleBlendSpace = new();
             IdleBlendSpace.Add(-1, 0, AnimationStateMachine.GetAnimation("IdleLeft")!);
             IdleBlendSpace.Add(1, 0, AnimationStateMachine.GetAnimation("IdleRight")!);
             IdleBlendSpace.Add(0, -1, AnimationStateMachine.GetAnimation("IdleUp")!);
             IdleBlendSpace.Add(0, 1, AnimationStateMachine.GetAnimation("IdleDown")!);
 
+            // Uses the current input vector to index into the blendspace
             AnimationBlendSpaceState WalkBlendSpaceState = new(WalkBlendSpace, () => { return BetterKeyboard.Inst.CurrentIV; })
             {
                 AnimationName = "WalkDown"
             };
-            AnimationBlendSpaceState IdleBlendSpaceState = new(IdleBlendSpace, () =>
-            {
-                return BetterKeyboard.Inst.LastNonZeroIV;
-            })
+
+            // Uses the last non-zero input vector to index into the blendspace
+            AnimationBlendSpaceState IdleBlendSpaceState = new(IdleBlendSpace, () => { return BetterKeyboard.Inst.LastNonZeroIV; })
             {
                 AnimationName = "IdleDown"
             };
 
+            // Transition from walk to idle if we aren't providing any movement input.
             WalkBlendSpaceState.AddBranch(IdleBlendSpaceState, () =>
             {
                 return BetterKeyboard.Inst.CurrentIV.Length() == 0;
             });
 
+            // Transition from idle to walk if we provided movement input.
             IdleBlendSpaceState.AddBranch(WalkBlendSpaceState, () =>
             {
                 return BetterKeyboard.Inst.CurrentIV.Length() > 0;
             });
 
+            // Adds the states to the state machine
             AnimationStateMachine.AddState(WalkBlendSpaceState);
             AnimationStateMachine.AddState(IdleBlendSpaceState);
-
-
-
         }
 
         public override void ProcessInput()
@@ -115,6 +116,8 @@ namespace Z.SurvivalGame
                 NumFrames = 2,
                 StartX = 16 * 6
             });
+
+
 
             AnimationStateMachine.AddAnimation(new AnimatedSprite(_spriteSheet, Game, this)
             {

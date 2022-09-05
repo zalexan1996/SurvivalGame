@@ -26,12 +26,19 @@ namespace Z.Engine.Source._2D.Sprites
             _sourceRectangle.Height = FrameHeight;
         }
 
+        /// <summary>
+        /// Plays the animation. Unhides the sprite if it's hidden.
+        /// </summary>
         public virtual void Play()
         {
             IsPlaying = true;
             IsHidden = false;
         }
 
+        /// <summary>
+        /// Stops the animation and hides it.
+        /// </summary>
+        /// <param name="resetToFirstFrame">Whether to reset the frame counter to 0. This will cause the next Play() to start at frame 0.</param>
         public virtual void Stop(bool resetToFirstFrame = true)
         {
             IsPlaying = false;
@@ -39,6 +46,10 @@ namespace Z.Engine.Source._2D.Sprites
             IsHidden = true;
         }
 
+        /// <summary>
+        /// If the sprite is playing, does animation logic using PlaybackSpeed and NumFrames
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             if (IsPlaying)
@@ -55,6 +66,10 @@ namespace Z.Engine.Source._2D.Sprites
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Draws the current sprite frame using the _sourceRectange and IsHidden property.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
             if (!IsHidden)
@@ -63,20 +78,28 @@ namespace Z.Engine.Source._2D.Sprites
             }
         }
 
-
+        /// <summary>
+        /// Code used to change which frame is being pulled from the sprite sheet.
+        /// </summary>
         protected void UpdateSourceRectangle()
         {
             _sourceRectangle.X = StartX + (CurrentFrame % NumFramesX) * FrameWidth;
             _sourceRectangle.Y = StartY + (CurrentFrame / NumFramesY) * FrameHeight;
         }
 
-
+        /// <summary>
+        /// The name of the animation. Used for indexing into the animation sequencer.
+        /// </summary>
         public string Name { get; set; }
 
         /// <summary>
         /// Whether we are actively playing the animation.
         /// </summary>
         public bool IsPlaying { get => _isPlaying; protected set => _isPlaying = value; }
+
+        /// <summary>
+        /// Whether this sprite should be drawn.
+        /// </summary>
         public bool IsHidden { get => _isHidden; protected set => _isHidden = value; }
 
         /// <summary>
@@ -84,8 +107,15 @@ namespace Z.Engine.Source._2D.Sprites
         /// </summary>
         public int NumFrames { get; set; }
 
-        protected int NumFramesX => TextureWidth / FrameWidth;
-        protected int NumFramesY => TextureHeight / FrameHeight;
+        /// <summary>
+        /// How many columns exist in the sprite sheet. Determined using TextureWidth and FrameWidth.
+        /// </summary>
+        protected int NumFramesX => StartX + TextureWidth / FrameWidth;
+
+        /// <summary>
+        /// How many rows exist in the sprite sheet. Determined using TextureHeight and FrameHeight.
+        /// </summary>
+        protected int NumFramesY => StartY + TextureHeight / FrameHeight;
 
         /// <summary>
         /// The width of each frame in the sprite sheet

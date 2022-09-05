@@ -8,6 +8,10 @@ using Z.Engine.Source.Interfaces;
 
 namespace Z.Engine.Source.World
 {
+     /// <summary>
+     /// Represents a collection of actors that exist in the World.
+     /// Used for drawing all active objects. TODO: Implement draw order.
+     /// </summary>
     public class World : WorldObject
     {
         public World(Game game) : base(game, null)

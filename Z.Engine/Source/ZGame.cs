@@ -7,6 +7,7 @@ using Z.Engine.Source.Core.Input;
 
 namespace Z.Engine.Source
 {
+
     public class ZGame : Game
     {
         public static Globals Globals

@@ -8,6 +8,10 @@ using Z.Engine.Source.Interfaces;
 
 namespace Z.Engine.Source.Core.Logging
 {
+    /// <summary>
+    /// Basic logger implementation
+    /// TODO: Look into Serilog
+    /// </summary>
     public class Logger : ILogger
     {
         private readonly LogLevels _minDebugLevel;

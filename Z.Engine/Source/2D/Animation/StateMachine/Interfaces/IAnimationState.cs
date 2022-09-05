@@ -8,6 +8,10 @@ using Microsoft.Xna.Framework;
 
 namespace Z.Engine.Source.Interfaces
 {
+    /// <summary>
+    /// Defines an animation state. The caller uses the AnimationName property to determine
+    /// what animation this state is deciding to use. 
+    /// </summary>
     public interface IAnimationState
     {
         /// <summary>
@@ -20,7 +24,8 @@ namespace Z.Engine.Source.Interfaces
         public delegate void BranchSatisfiedHandler(IAnimationState oldState, IAnimationState newState);
 
         /// <summary>
-        /// The animation name for this state.
+        /// The animation name for this state. If the child class is just a wrapper for a Sprite or AnimatedSprite,
+        /// this property will never change. But a blendspace will alter this property depending on its input.
         /// </summary>
         public string AnimationName { get; set; }
 
@@ -29,6 +34,11 @@ namespace Z.Engine.Source.Interfaces
         /// </summary>
         public List<IAnimationBranch> Branches { get; set; }
 
+        /// <summary>
+        /// Checks to make sure that this state should continue being the active one or if we should switch to
+        /// another.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime);
 
     }
