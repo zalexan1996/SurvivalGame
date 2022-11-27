@@ -44,7 +44,7 @@ namespace Z.SurvivalGame
             IdleBlendSpace.Add(0, 1, AnimationStateMachine.GetAnimation("IdleDown")!);
 
             // Uses the current input vector to index into the blendspace
-            AnimationBlendSpaceState WalkBlendSpaceState = new(WalkBlendSpace, () => { return BetterKeyboard.Inst.CurrentIV; })
+            AnimationBlendSpaceState WalkBlendSpaceState = new(WalkBlendSpace, () => { return BetterKeyboard.Inst.LastNonZeroIV; })
             {
                 AnimationName = "WalkDown"
             };
@@ -69,7 +69,7 @@ namespace Z.SurvivalGame
 
             // Adds the states to the state machine
             AnimationStateMachine.AddState(WalkBlendSpaceState);
-            AnimationStateMachine.AddState(IdleBlendSpaceState);
+            AnimationStateMachine.AddState(IdleBlendSpaceState, true);
         }
 
         public override void ProcessInput()

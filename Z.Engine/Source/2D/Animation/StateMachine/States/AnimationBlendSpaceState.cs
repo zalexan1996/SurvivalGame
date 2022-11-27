@@ -35,7 +35,6 @@ namespace Z.Engine.Source._2D.Animation.StateMachine
             // Potentially switch to a new state.
             base.Update(gameTime);
 
-
             // Get our blend space input.
             Vector2 input = _blendSpaceInput();
 

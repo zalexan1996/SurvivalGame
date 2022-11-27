@@ -17,6 +17,7 @@ namespace Z.Engine.Source._2D.Animation.StateMachine
         public List<IAnimationBranch> Branches { get; set; } = new();
 
         public event IAnimationState.BranchSatisfiedHandler? BranchSatisfied;
+        
 
         /// <summary>
         /// Adds a branch to transition logic to another state.
@@ -60,6 +61,10 @@ namespace Z.Engine.Source._2D.Animation.StateMachine
         protected void OnBranchSatisfied(IAnimationState oldState, IAnimationState newState)
         {
             BranchSatisfied?.Invoke(oldState, newState);
+        }
+        public override string ToString()
+        {
+            return AnimationName;
         }
     }
 }

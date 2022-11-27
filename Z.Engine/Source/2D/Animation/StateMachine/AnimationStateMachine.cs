@@ -183,6 +183,7 @@ namespace Z.Engine.Source._2D.Animation
             {
                 AnimationSequencer.Play(_activeState.AnimationName);
             }
+
         }
         /// <summary>
         /// The actively playing sprite. Fetched by getting the ActiveState's AnimationName from the AnimationSequencer.

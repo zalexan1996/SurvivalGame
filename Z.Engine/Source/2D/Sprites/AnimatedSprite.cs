@@ -202,5 +202,10 @@ namespace Z.Engine.Source._2D.Sprites
         /// </summary>
         public int PlaybackSpeed { get; set; } = 15;
 
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
